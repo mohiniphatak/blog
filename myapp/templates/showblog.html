@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1st app</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% block body %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+		{% load static %}
+<img src = '{% static "img/1.jpg"%}' height="200px" width="400px"><br><br>
+{% for i in blogs %}
+<div class="panel panel-default">
+  <div class="panel-heading">BLOG {{blogs.number}}</div>
+  <div class="panel-body">Blog Title : {{i.title}}<div class="panel-body">Author : {{i.author}}</div>
+</div>
+{% endfor %}
+			<nav>
+				<ul class="pagination">
+					<li class="page-item">
+					{% if blogs.has_previous %}
+					<a class="page-link" href="?page={{blogs.previous_page_number}}">Previous</a>
+						{% endif %}
+					</li>
+				<li class="page-item">
+						<a class="page-link" href="#">Page {{blogs.number}} of {{blogs.paginator.num_pages}}</a>
+					</li> 
+					
+				
+					<li class="page-item">
+					{% if blogs.has_next %}
+					<a class="page-link" href="?page={{blogs.next_page_number}}">Next</a>
+						{% endif %}
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<a href="/myapp/addblog">Click to add new blog</a>
+	</div>
+	{% endblock %}
+</body>
+</html>

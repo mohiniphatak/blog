@@ -1,0 +1,7 @@
+<a href="/myapp/showblog">Show Blogs</a>
+<a href="/myapp/register">Register</a>
+<a href="/myapp/login">login</a>
+<form method="POST">{%csrf_token%}
+	{{form.as_p}}
+<input type = "submit"  value="login">
+</form>
